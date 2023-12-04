@@ -1,0 +1,9 @@
+﻿@model Employee
+
+<h1 class="alert alert-success">Employee [@Model.FullName] Details</h1>
+
+<partial name="_EmpData"><partial/>
+
+<a asp-controller="Employees" asp-action="GetIndexView">Back to List</a>
+
+<partial name="_TSContacts"></partial>

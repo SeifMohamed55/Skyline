@@ -1,0 +1,34 @@
+﻿@{
+    Employee emp = ViewBag.Employee;
+}
+<div class="row">
+    <dl class="col-6">
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.Id)</dt>
+        <dd class="col-9">@Model.Id</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.FullName)</dt>
+        <dd class="col-9">@Model.FullName</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.Position)</dt>
+        <dd class="col-9">@Model.Position</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.Department.Name)</dt>
+        <dd class="col-9">@Model.Department.Name</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.Salary)</dt>
+        <dd class="col-9">@Model.Salary</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.BirthDate)</dt>
+        <dd class="col-9">@Model.BirthDate</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.JoinDate)</dt>
+        <dd class="col-9">@Model.JoinDate</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.IsActive)</dt>
+        <dd class="col-9">@Model.IsActive</dd>
+
+        <dt class="col-3">@Html.DisplayNameFor(e => emp.Department.Name)</dt>
+        <dd class="col-9">@Model.Department.Name (@Model.Department.Description)</dd>
+    </dl>
+    <img src="@Model.ImagePath" class="card col-6" style="object-fit:contain">
+</div>

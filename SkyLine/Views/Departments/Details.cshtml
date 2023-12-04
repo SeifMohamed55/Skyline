@@ -1,0 +1,9 @@
+﻿@model Department
+
+<h1 class="alert alert-warning">@Model.Name Department</h1>
+<partial name="_DeptData"></partial>
+
+<a asp-controller="Departments" asp-action="GetIndexView">Back to List</a>
+
+<partial name="_TSContacts"></partial>
+

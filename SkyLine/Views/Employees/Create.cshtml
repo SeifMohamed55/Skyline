@@ -1,0 +1,87 @@
+﻿@model Employee
+
+<h1 class="alert alert-success text-center">Create Employee</h1>
+
+<div class="row">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form class="col-4" method="post" asp-controller="Employees" asp-action="AddNew" enctype="multipart/form-data">
+     
+        <div>
+        <label class="mb-1" asp-for="FullName"></label>
+        <input type="text" class="form-control" asp-for="FullName">
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="mb-1" asp-for="Position"></label>
+            <input type="text" class="form-control" asp-for="Position">
+            <span asp-validation-for="Position" class="text-danger"></span>
+        </div>
+
+        <div>
+        <label class="mb-1" asp-for="Salary"></label>
+        <input type="number" class="form-control" asp-for="Salary">
+            <span asp-validation-for="Salary" class="text-danger"></span>
+
+        </div>
+
+        <div>
+        <label class="mb-1" asp-for="BirthDate"></label>
+        <input class="form-control" asp-for="BirthDate">
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+        </div>
+
+        <div>
+        <label class="mb-1" asp-for="JoinDate"></label>
+        <input  class="form-control" asp-for="JoinDate">
+            <span asp-validation-for="JoinDate" class="text-danger"></span>
+
+        </div>
+
+        <div>
+        <label class="mb-1" asp-for="IsActive"></label>
+        <input asp-for="IsActive">
+        </div>
+
+        <div>
+            <label asp-for="DepartmentId"></label>
+            <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.AllDepartments,"Id","Description"))" class="form-control">
+                <option selected disabled">Select...</option>
+            </select>
+            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+
+        </div>
+
+        <div>
+            <label asp-for="ImagePath"></label>
+            <input type="file" class="form-control" name="formFile" id="formFile" accept=".jpg, .png" onchange="SetImgSrc()">
+        </div>
+
+        <div>
+        <input type="submit" class="btn btn-primary">
+        </div>
+
+       
+    </form>
+    <img src="" class="col-4 card" style="object-fit:contain" id="empImage">
+
+</div>
+<a asp-controller="Employees" asp-action="GetIndexView">Back to List</a>
+
+
+@*@foreach (var dept in ViewBag.AllDepartments)
+  {
+      <option value="@dept.Id">@dept.Name</option>
+
+  }
+*@
+@section Scripts{
+    <script>
+        function SetImgSrc() {
+            document.getElementById("empImage").src = window.URL.createObjectURL(document.getElementById("formFile").files[0]);
+        }
+    </script>
+}
+
+

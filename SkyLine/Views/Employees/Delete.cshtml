@@ -1,0 +1,12 @@
+﻿@model Employee
+
+<h1 class="alert alert-danger">Are you sure you want to delete Employee [@Model.FullName]?</h1>
+
+<partial name="_EmpData"><partial/>
+
+<form method="post" asp-controller="Employees" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="Id">
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+</form>
+
+<a asp-controller="Employees" asp-action="GetIndexView">Back to List</a>

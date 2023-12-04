@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Employee>
+
+<h1 class="alert alert-success text-center text-black">Welcome to Employees view!</h1>
+<a class="btn btn-primary mb-3 mt-3" asp-controller="Employees" asp-action="GetCreateView">Add Employee</a>
+
+
+<form class="col-4" method="get" asp-controller="Employees" asp-action="GetIndexView">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" value="@ViewBag.SearchVal" />
+        <button type="submit" class="btn btn-secondary input-group-append"><i class="bi-search"></i></button>
+    </div>
+</form>
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(d => d.Id)</th>
+                <th>@Html.DisplayNameFor(d => d.FullName)</th>
+                <th>@Html.DisplayNameFor(d => d.Position)</th>
+                <th>@Html.DisplayNameFor(d => d.Department.Name)</th>
+                <th>@Html.DisplayNameFor(d => d.BirthDate)</th>
+                <th>@Html.DisplayNameFor(d => d.JoinDate)</th>
+                <th>@Html.DisplayNameFor(d => d.Salary)</th>
+                <th>@Html.DisplayNameFor(d => d.IsActive)</th>
+                <th>@Html.DisplayNameFor(d => d.ImagePath)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.FullName</td>
+                    <td>@emp.Position</td>
+                    <td>@emp.Department.Name</td>
+                    <td>@emp.BirthDate.ToShortDateString()</td>
+                    <td>@emp.JoinDate.ToShortDateString()</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.IsActive</td>
+                    <td><img src="@emp.ImagePath" style="object-fit:contain"></td>
+                    <td>
+                        <a asp-controller="Employees" asp-action="GetDetailsView" asp-route-id="@emp.Id" class="btn btn-outline-success">Details <i class="bi bi-list-task"></i></a>
+                        <a asp-controller="Employees" asp-action="GetEditView" asp-route-id="@emp.Id" class="btn btn-outline-primary">Edit <i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Employees" asp-action="GetDeleteView" asp-route-id="@emp.Id" class="btn btn-outline-danger">Delete <i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr><th class="text-end" colspan="5">Total Salaries: @Model.Sum(emp => emp.Salary).ToString("C0")</th></tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h3 class="alert alert-danger text-center">No employees available for display</h3>
+}
+
+<partial name="_TSContacts"></partial>
+
+<h3 class="alert alert-success text-center mb-5">Employees as cards</h3>
+
+@if (Model.Count() > 0)
+{
+    @foreach (var emp in Model)
+    {
+        <div class="card" style="display:inline-block">
+            <div class="card-header text-center">[@emp.Id] : @emp.FullName</div>
+            <div class="card-body text-center">
+                <div class="card-text"> employee BirthDate: @emp.BirthDate.ToShortDateString()</div>
+                <div class="card-text">employee JoinDate: @emp.JoinDate.ToShortDateString()</div>
+            </div>
+            <div class="card-footer">
+                Salary: @emp.Salary
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3 class="alert alert-danger text-center">No employees available for display</h3>
+
+}
+
+
+
+
+
